@@ -324,11 +324,17 @@ function link3() {
 
 <!-- load iframe -->
 <script> 
+/* flag是图片链接的计数器 */
+var flag = 0;
 
+/* 只有第一次点击图片链接时才执行 */
 $(".load-iframe").click(function(){
-    $("iframe").each(function(){
-        $(this).attr("src", $(this).data("src"));
-    });
+    if (flag < 1) {
+		$("iframe").each(function(){
+			$(this).attr("src", $(this).data("src"));
+		});
+		flag = flag + 1;
+    }
 });
 </script>
 
