@@ -9,7 +9,7 @@
       {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
       {{ $authorImage := (printf "%s/%s" $.Site.BaseURL $strippedSlash) }}
       <div class="author-image">
-        <a href="/resources/"><img src="{{$authorImage}}" alt="Author Image" class="img--circle img--headshot element--center"></a>
+        <a onclick="openNav()"><img src="{{$authorImage}}" alt="Author Image" class="img--circle img--headshot element--center"></a>
       </div>
       {{ end }}
       <p class="site__description">
@@ -27,3 +27,197 @@
     {{ partial "sidebar/copyright.html" . }}
   </div>
 </div>
+
+<!-- Changes made by luochang212 start -->
+<!-- Sidenav -->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  transition: background-color .5s;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  /* 1-40% */
+  width: 60%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  //background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #FFF; //#111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  /* sidenav 顶部留白距离 */
+  //padding-top: 6px;
+}
+
+/*
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+*/
+
+/*
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+*/
+
+#main {
+  transition: margin-left .5s;
+  /* tab 周围留白距离 */
+  padding: 16px;
+}
+
+/*
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+*/
+</style>
+
+<style>
+<!-- body {font-family: Arial;} -->
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 12px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+
+
+<body>
+
+<div id="overlay" onclick="off()"></div>
+
+<div id="mySidenav" class="sidenav">
+  
+  <div id="main">
+	<div class="tab">
+	  <button class="tablinks" onclick="openItem(event, 'Resources')">Resources</button>
+	  <button class="tablinks" onclick="openItem(event, 'Audio-player')">Audio Player</button>
+	  <!-- <button class="tablinks" onclick="openItem(event, 'CV')">CV</button> -->
+	</div>
+	
+	<div id="Resources" class="tabcontent">
+	  <iframe src="/resources/" frameborder="0" height="600" width="100%"></iframe>
+	</div>
+
+	<div id="Audio-player" class="tabcontent">
+	  <iframe src="/gadget/audio-player/" frameborder="0" height="600" width="100%"></iframe>
+	  <!-- <iframe id="tests" src="/gadget/audio-player/" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%"></iframe> -->
+	</div>
+
+	<!-- <div id="CV" class="tabcontent"> -->
+	  <!-- <iframe src="/gadget/cv/" frameborder="0" height="600" width="100%"></iframe> -->
+	<!-- </div> -->
+	
+  </div>
+</div>
+
+<script>
+function openNav() {
+  on();
+  document.getElementById("mySidenav").style.width = "40%";  /* 1-60% */
+  //document.getElementById("main").style.marginRight = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  //document.getElementById("main").style.marginRight= "0";
+  document.body.style.backgroundColor = "white";
+}
+
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  closeNav();
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+<script>
+openItem(event, 'Resources')
+
+function openItem(evt, itemName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(itemName).style.display = "block";
+  evt.currentTarget.className += "active";
+}
+</script>
+
+</body>
+
+
+<!-- Changes made by luochang212 finish -->
