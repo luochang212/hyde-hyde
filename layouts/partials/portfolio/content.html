@@ -1,6 +1,7 @@
 <span class="section__title">{{ .Title | default "Projects" }}</span>
 <div class="portfolio__content">
     {{ range first 1 (where .Data.Pages "Params.featured" "==" true) }}
+		<br><br>
         <section class="portfolio__featured-project">
             <div class="section-inner">
                 <div class="portfolio_content">
@@ -8,6 +9,7 @@
                         <span class="project__title">
                             <a href="{{ .Params.Link }}" target="_blank" rel="noopener noreferrer">{{ .Title }}</a>
                         </span>
+						<!-- <br><br> -->
                         <p class="project__subtitle-big">
                             <sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup>
                             {{ .Params.description }}
@@ -52,3 +54,36 @@
         </div>
     </section>
 </div>
+
+<div style="position: relative; left:50%;">
+
+    <div class="card">
+        <img onclick="openLink();" src="/img/more.png" alt="Card Back">
+        <img onclick="openLink();" src="/img/more_blue.png" class="img-top" alt="Card Front">
+    </div>
+
+</div>
+
+<style type="text/css">
+    .card {
+        width: 45%;
+        position: relative;
+        display: inline-block;
+    }
+    .card .img-top {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .card:hover .img-top {
+        display: inline;
+    }
+</style>
+
+<script>
+function openLink() {
+  window.open("/projects/","_self");
+}
+</script>
