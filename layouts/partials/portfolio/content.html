@@ -1,3 +1,4 @@
+
 <span class="section__title">{{ .Title | default "Projects" }}</span>
 <div class="portfolio__content">
     {{ range first 1 (where .Data.Pages "Params.featured" "==" true) }}
@@ -6,21 +7,26 @@
             <div class="section-inner">
                 <div class="portfolio_content">
                     <div class="item featured text-center">
-                        <span class="project__title">
-                            <a href="{{ .Params.Link }}" target="_blank" rel="noopener noreferrer">{{ .Title }}</a>
-                        </span>
-						<!-- <br><br> -->
-                        <p class="project__subtitle-big">
-                            <sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup>
-                            {{ .Params.description }}
-                            <sup><i class="fa fa-quote-right" aria-hidden="true"></i></sup>
-                        </p>
-                        <div class="project__featured-image">
-                            <img src="{{ .Params.screenshot }}"  alt="{{ .Title }}">
-                        </div>
-                        <div class="project__summary">
-                                {{ .Content }}
-                        </div>
+						<div class="featured-card">
+						    <br>
+							<span class="project__title">
+								<a href="{{ .Params.Link }}" target="_blank" rel="noopener noreferrer">{{ .Title }}</a>
+							</span>
+							<!-- <br><br> -->
+							<p class="project__subtitle-big">
+								<sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup>
+								{{ .Params.description }}
+								<sup><i class="fa fa-quote-right" aria-hidden="true"></i></sup>
+							</p>
+							<div class="project__featured-image">
+								<img src="{{ .Params.screenshot }}"  alt="{{ .Title }}">
+							</div>
+							<div class="project__summary">
+								<div class="featured-container">
+										{{ .Content }}
+								</div>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -57,29 +63,57 @@
 
 <div style="position: relative; left:50%;">
 
-    <div class="card">
+    <div class="more">
         <img onclick="openLink();" src="/img/more.png" alt="Card Back">
         <img onclick="openLink();" src="/img/more_blue.png" class="img-top" alt="Card Front">
     </div>
 
 </div>
 
+<!-- <div class="card"> -->
+  <!-- <img src="img_avatar.png" alt="Avatar" style="width:100%"> -->
+  <!-- <div class="container"> -->
+    <!-- <h4><b>John Doe</b></h4>  -->
+    <!-- <p>Architect & Engineer</p>  -->
+  <!-- </div> -->
+<!-- </div> -->
+
+
+<!-- more按钮的css -->
 <style type="text/css">
-    .card {
+    .more {
         width: 45%;
         position: relative;
         display: inline-block;
     }
-    .card .img-top {
+    .more .img-top {
         display: none;
         position: absolute;
         top: 0;
         left: 0;
         z-index: 99;
     }
-    .card:hover .img-top {
+    .more:hover .img-top {
         display: inline;
     }
+</style>
+
+<!-- 卡片效果的css -->
+<style>
+.featured-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.featured-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.featured-container {
+  padding: 2px 16px;
+}
 </style>
 
 <script>

@@ -208,9 +208,10 @@ body {
   <div id="main">
 	<div class="tab">
 	  <button class="tablinks" onclick="openItem(event, 'Resources')">Resources</button>
-	  <button class="tablinks" onclick="openItem(event, 'Audio-player')">Audio Player</button>
-	  <button class="tablinks" onclick="openItem(event, 'Video-player')">Video player</button>
+	  <button class="tablinks" onclick="openItem(event, 'Audio-player')">Music</button>
+	  <button class="tablinks" onclick="openItem(event, 'Video-player')">Video</button>
 	  <button class="tablinks" onclick="openItem(event, 'piano')">Piano</button>
+	  <button class="tablinks" onclick="openItem(event, 'gadget')">Gadget</button>
 	</div>
 	
 	<div id="Resources" class="tabcontent">
@@ -240,18 +241,22 @@ body {
 	  <div class="dropup">
 		<button class="dropbtn">更多视频</button>
 		<div class="dropup-content">
-        <a onclick="link1()">1</a>
-		<a onclick="link2()">2</a>
-		<a onclick="link3()">3</a>
-		<!-- <a href="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" target="videoiFrame">1</a> -->
-		<!-- <a href="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1" target="videoiFrame">2</a> -->
-		<!-- <a href="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1" target="videoiFrame">3</a> -->
+			<a onclick="link1()">1</a>
+			<a onclick="link2()">2</a>
+			<a onclick="link3()">3</a>
+			<!-- <a href="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" target="videoiFrame">1</a> -->
+			<!-- <a href="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1" target="videoiFrame">2</a> -->
+			<!-- <a href="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1" target="videoiFrame">3</a> -->
+	    </div>
 	  </div>
-</div>
 	</div>
 	
 	<div id="piano" class="tabcontent">
 	  <iframe src="about:blank" data-src="/gadget/piano/" frameborder="0" height="600" width="100%"></iframe>
+	</div>
+	
+	<div id="gadget" class="tabcontent">
+	  <iframe src="about:blank" data-src="/gadget/" frameborder="0" height="600" width="100%"></iframe>
 	</div>
 	
   </div>
