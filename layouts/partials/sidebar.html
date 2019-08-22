@@ -9,7 +9,8 @@
       {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
       {{ $authorImage := (printf "%s/%s" $.Site.BaseURL $strippedSlash) }}
       <div class="author-image">
-        <a href="#" class="load-iframe" onclick="openNav()"><img src="{{$authorImage}}" alt="Author Image" class="img--circle img--headshot element--center"></a>
+        <a href="#" class="load-iframe" onclick="openNav()"><img src="{{$authorImage}}" id="author-iamge"
+            alt="Author Image" class="img--circle img--headshot element--center"></a>
       </div>
       {{ end }}
       <p class="site__description">
@@ -30,44 +31,46 @@
 
 <!-- Changes made by luochang212 start -->
 <!-- Sidenav -->
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
 
-<!-- sidebar nav -->
-<style>
-body {
-  transition: background-color .5s;
-}
 
-#overlay {
-  position: fixed;
-  display: none;
-  width: calc(100vw - 580px);
-  height: 100%;
-  top: 0;
-  left: 0;
-  /* background-color: rgba(0,0,0,0.5); */
-  z-index: 2;
-  cursor: pointer;
-}
+  <style>
+    body {
+      transition: background-color .5s;
+    }
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  background-color: #FFF; /* #111; */
-  overflow-x: hidden;
-  transition: 0.5s;
-  /* sidenav 顶部留白距离 */
-  /* padding-top: 6px; */
-}
+    #overlay {
+      position: fixed;
+      display: none;
+      width: calc(100vw - 580px);
+      height: 100%;
+      top: 0;
+      left: 0;
+      /* background-color: rgba(0,0,0,0.5); */
+      z-index: 2;
+      cursor: pointer;
+    }
 
-/*
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      background-color: #FFF;
+      /* #111; */
+      overflow-x: hidden;
+      transition: 0.5s;
+      /* sidenav 顶部留白距离 */
+      /* padding-top: 6px; */
+    }
+
+    /*
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -82,7 +85,7 @@ body {
 }
 */
 
-/*
+    /*
 .sidenav .closebtn {
   position: absolute;
   top: 0;
@@ -92,268 +95,270 @@ body {
 }
 */
 
-#main {
-  transition: margin-left .5s;
-  /* tab 周围留白距离 */
-  padding: 16px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
+    #main {
+      transition: margin-left .5s;
+      /* tab 周围留白距离 */
+      padding: 16px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+    }
 
-/*
+    /*
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
 */
-</style>
 
-<!-- tab -->
-<style>
-<!-- body {font-family: Arial;} -->
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
 
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
 
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 12px 12px;
+      margin: 0;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+  </style>
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 12px 12px;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-</style>
+  <!-- audio player -->
+  <style>
+    .dropbtn {
+      background-color: #3498DB;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
 
-<!-- audio player -->
-<style>
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
+    .dropup {
+      position: relative;
+      display: inline-block;
+    }
 
-.dropup {
-  position: relative;
-  display: inline-block;
-}
+    .dropup-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      bottom: 50px;
+      z-index: 1;
+    }
 
-.dropup-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  bottom: 50px;
-  z-index: 1;
-}
+    .dropup-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
 
-.dropup-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+    .dropup-content a:hover {
+      background-color: #ccc
+    }
 
-.dropup-content a:hover {background-color: #ccc}
+    .dropup:hover .dropup-content {
+      display: block;
+    }
 
-.dropup:hover .dropup-content {
-  display: block;
-}
+    .dropup:hover .dropbtn {
+      background-color: #2980B9;
+    }
 
-.dropup:hover .dropbtn {
-  background-color: #2980B9;
-}
-
-#video2,
-#video3 {
-  display:none;
-}
-</style>
+    #video2,
+    #video3 {
+      display: none;
+    }
+  </style>
 
 </head>
 
 
 <body>
 
-<div id="overlay" onclick="off()"></div>
+  <div id="overlay" onclick="off()"></div>
 
-<div id="mySidenav" class="sidenav">
-  
-  <div id="main">
-	<div class="tab">
-	  <button class="tablinks" onclick="openItem(event, 'Resources')">Resources</button>
-	  <button class="tablinks" onclick="openItem(event, 'Audio-player')">Music</button>
-	  <button class="tablinks" onclick="openItem(event, 'Video-player')">Video</button>
-	  <button class="tablinks" onclick="openItem(event, 'piano')">Piano</button>
-	  <button class="tablinks" onclick="openItem(event, 'gadget')">Gadget</button>
-	</div>
-	
-	<div id="Resources" class="tabcontent">
-	  <iframe src="about:blank" data-src="/resources/" frameborder="0" height="560" width="100%" marginheight="0" marginwidth="0" scrolling="yes"></iframe>
-	</div>
+  <div id="mySidenav" class="sidenav">
 
-	<div id="Audio-player" class="tabcontent">
+    <div id="main">
+      <div class="tab">
+        <button id="default-tab" class="tablinks" onclick="openItem(event, 'Resources')">Resources</button>
+        <!-- <button class="tablinks" onclick="openItem(event, 'Audio-player')">Music</button> -->
+        <button class="tablinks" onclick="openItem(event, 'Video-player')">Video</button>
+        <!-- <button class="tablinks" onclick="openItem(event, 'piano')">Piano</button> -->
+        <button class="tablinks" onclick="openItem(event, 'gallery')">Gallery</button>
+        <button class="tablinks" onclick="openItem(event, 'gadget')">Gadget</button>
+      </div>
+
+      <div id="Resources" class="tabcontent">
+        <iframe src="about:blank" data-src="/resources/" frameborder="0" height="560" width="100%" marginheight="0"
+          marginwidth="0" scrolling="yes"></iframe>
+      </div>
+
+      <!-- <div id="Audio-player" class="tabcontent">
 	  <iframe src="about:blank" data-src="/gadget/audio-player/" frameborder="0" height="560" width="100%" scrolling="yes"></iframe>
-	  <!-- <iframe id="tests" src="/gadget/audio-player/" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%"></iframe> -->
-	</div>
-	
-	<div id="Video-player" class="tabcontent">
-	
-	<div id="video1">
-	  <iframe src="about:blank" data-src="//player.bilibili.com/player.html?aid=41949084&cid=75021374&page=1" style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-    </div>
-	<div id="video2">
-	  <iframe src="about:blank" data-src="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1" style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-	</div>
-	<div id="video3">
-	  <iframe src="about:blank" data-src="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1" style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-  </div>
-  
-  <!--
+
+	</div> -->
+
+      <div id="Video-player" class="tabcontent">
+
+        <div id="video1">
+          <iframe src="about:blank" data-src="//player.bilibili.com/player.html?aid=41949084&cid=75021374&page=1"
+            style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0"
+            allowfullscreen="true"></iframe>
+        </div>
+        <div id="video2">
+          <iframe src="about:blank" data-src="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1"
+            style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0"
+            allowfullscreen="true"></iframe>
+        </div>
+        <div id="video3">
+          <iframe src="about:blank" data-src="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1"
+            style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0"
+            allowfullscreen="true"></iframe>
+        </div>
+
+        <!--
     Histories: 
     //player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1
     //player.bilibili.com/player.html?aid=3601884&cid=5751830&page=1
   -->
-	
-	<!-- <iframe name="videoiFrame" src="about:blank" data-src="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe> -->
-	
-	<br>
-	  <div class="dropup">
-		<button class="dropbtn">更多视频</button>
-		<div class="dropup-content">
-			<a onclick="link1()">1</a>
-			<a onclick="link2()">2</a>
-			<a onclick="link3()">3</a>
-			<!-- <a href="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" target="videoiFrame">1</a> -->
-			<!-- <a href="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1" target="videoiFrame">2</a> -->
-			<!-- <a href="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1" target="videoiFrame">3</a> -->
-	    </div>
-	  </div>
-	</div>
-	
-	<div id="piano" class="tabcontent">
+
+        <!-- <iframe name="videoiFrame" src="about:blank" data-src="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe> -->
+
+        <br>
+        <div class="dropup">
+          <button class="dropbtn">更多视频</button>
+          <div class="dropup-content">
+            <a onclick="link1()">1</a>
+            <a onclick="link2()">2</a>
+            <a onclick="link3()">3</a>
+            <!-- <a href="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" target="videoiFrame">1</a> -->
+            <!-- <a href="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1" target="videoiFrame">2</a> -->
+            <!-- <a href="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1" target="videoiFrame">3</a> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- <div id="piano" class="tabcontent">
     <iframe src="about:blank" data-src="/gadget/piano/" frameborder="0" height="560" width="100%" scrolling="yes"></iframe>
-	</div>
-	
-	<div id="gadget" class="tabcontent">
-	  <iframe src="about:blank" data-src="/gadget/" frameborder="0" height="560" width="100%" scrolling="yes"></iframe>
-	</div>
-	
+  </div> -->
+
+      <div id="gallery" class="tabcontent">
+        <iframe src="about:blank" data-src="/gadget/gallery/#two" frameborder="0" height="560" width="100%"
+          scrolling="yes"></iframe>
+      </div>
+
+      <div id="gadget" class="tabcontent">
+        <iframe src="about:blank" data-src="/gadget/" frameborder="0" height="560" width="100%"
+          scrolling="yes"></iframe>
+      </div>
+
+    </div>
   </div>
-</div>
 
-<!-- sidebar nav -->
-<script>
-function openNav() {
-  on();
-  document.getElementById("mySidenav").style.width = "580px";
-  //document.getElementById("main").style.marginRight = "250px";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  //document.getElementById("main").style.marginRight= "0";
-  document.body.style.backgroundColor = "white";
-}
-
-function on() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-  closeNav();
-  document.getElementById("overlay").style.display = "none";
-}
-</script>
-
-<!-- tab -->
-<script>
-openItem(event, 'Resources')
-
-function openItem(evt, itemName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(itemName).style.display = "block";
-  evt.currentTarget.className += "active";
-}
-</script>
-
-<!-- video player -->
-<script>
-function link1() {
-  document.getElementById("video1").style.display = "block";
-  document.getElementById("video2").style.display = "none";
-  document.getElementById("video3").style.display = "none";
-}
-
-function link2() {
-  document.getElementById("video1").style.display = "none";
-  document.getElementById("video2").style.display = "block";
-  document.getElementById("video3").style.display = "none";
-}
-
-function link3() {
-  document.getElementById("video1").style.display = "none";
-  document.getElementById("video2").style.display = "none";
-  document.getElementById("video3").style.display = "block";
-}
-</script>
-
-<!-- load iframe -->
-<script> 
-/* flag是图片链接的计数器 */
-var flag = 0;
-
-/* 只有第一次点击图片链接时才执行 */
-$(".load-iframe").click(function(){
-    if (flag < 1) {
-		$("iframe").each(function(){
-			$(this).attr("src", $(this).data("src"));
-		});
-		flag = flag + 1;
+  <!-- sidebar nav -->
+  <script>
+    'use strict'
+    function openNav() {
+      on();
+      document.getElementById("mySidenav").style.width = "580px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
     }
-});
-</script>
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.body.style.backgroundColor = "white";
+    }
+
+    function on() {
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function off() {
+      closeNav();
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    // tab
+    document.getElementById('default-tab').click();
+
+    function openItem(evt, itemName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(itemName).style.display = "block";
+      evt.currentTarget.className += "active";
+    }
+
+    function link1() {
+      document.getElementById("video1").style.display = "block";
+      document.getElementById("video2").style.display = "none";
+      document.getElementById("video3").style.display = "none";
+    }
+
+    function link2() {
+      document.getElementById("video1").style.display = "none";
+      document.getElementById("video2").style.display = "block";
+      document.getElementById("video3").style.display = "none";
+    }
+
+    function link3() {
+      document.getElementById("video1").style.display = "none";
+      document.getElementById("video2").style.display = "none";
+      document.getElementById("video3").style.display = "block";
+    }
+
+    /* flag是图片链接的计数器 */
+    var flag = 0;
+
+    /* 只有第一次点击图片链接时才执行 */
+    $(".load-iframe").click(function () {
+      if (flag < 1) {
+        $("iframe").each(function () {
+          $(this).attr("src", $(this).data("src"));
+        });
+        flag = flag + 1;
+      }
+    });
+  </script>
 
 </body>
 
