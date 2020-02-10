@@ -1,42 +1,6 @@
-<!-- Sidebar -->
-<div class="sidebar">
-  <div class="container {{ with .Site.Params.sidebarSticky }}sidebar-sticky{{ end }}">
-    <div class="sidebar-about">
-      <span class="site__title">
-        <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-      </span>
-      {{ with .Site.Params.authorimage }}
-      {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
-      {{ $authorImage := (printf "%s/%s" $.Site.BaseURL $strippedSlash) }}
-      <div class="author-image">
-        <a href="#" class="load-iframe" onclick="openNav()"><img src="{{$authorImage}}" id="author-iamge"
-            alt="Author Image" class="img--circle img--headshot element--center"></a>
-      </div>
-      {{ end }}
-      <p class="site__description">
-        {{ with .Site.Params.description }} {{.}} {{end}}
-      </p>
-    </div>
-    <div class="collapsible-menu">
-      <input type="checkbox" id="menuToggle">
-      <label for="menuToggle">{{ .Site.Title }}</label>
-      <div class="menu-content">
-        {{ partial "sidebar/menu.html" . }}
-        {{ partial "sidebar/social.html" . }}
-      </div>
-    </div>
-    {{ partial "sidebar/copyright.html" . }}
-  </div>
-</div>
-
-<!-- Changes made by luochang212 start -->
-<!-- Sidenav -->
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
-
+  <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.9.0.min.js"></script>
 
   <style>
     body {
@@ -70,31 +34,6 @@
       /* padding-top: 6px; */
     }
 
-    /*
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-*/
-
-    /*
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-*/
-
     #main {
       transition: margin-left .5s;
       /* tab 周围留白距离 */
@@ -106,13 +45,6 @@
       left: 0;
       overflow: hidden;
     }
-
-    /*
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-*/
 
     /* Style the tab */
     .tab {
@@ -151,10 +83,7 @@
       border: 1px solid #ccc;
       border-top: none;
     }
-  </style>
 
-  <!-- audio player -->
-  <style>
     .dropbtn {
       background-color: #3498DB;
       color: white;
@@ -204,8 +133,42 @@
 
 </head>
 
-
 <body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="container {{ with .Site.Params.sidebarSticky }}sidebar-sticky{{ end }}">
+      <div class="sidebar-about">
+        <span class="site__title">
+          <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        </span>
+        {{ with .Site.Params.authorimage }}
+        {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
+        {{ $authorImage := (printf "%s/%s" $.Site.BaseURL $strippedSlash) }}
+        <div class="author-image">
+          <a href="#" class="load-iframe" onclick="openNav()"><img src="{{$authorImage}}" id="author-iamge"
+              alt="Author Image" class="img--circle img--headshot element--center"></a>
+        </div>
+        {{ end }}
+        <p class="site__description">
+          {{ with .Site.Params.description }} {{.}} {{end}}
+        </p>
+      </div>
+      <div class="collapsible-menu">
+        <input type="checkbox" id="menuToggle">
+        <label for="menuToggle">{{ .Site.Title }}</label>
+        <div class="menu-content">
+          {{ partial "sidebar/menu.html" . }}
+          {{ partial "sidebar/social.html" . }}
+        </div>
+      </div>
+      {{ partial "sidebar/copyright.html" . }}
+    </div>
+  </div>
+
+  <!-- Changes made by luochang212 start -->
+  <!-- Sidenav -->
+
 
   <div id="overlay" onclick="off()"></div>
 
@@ -214,10 +177,8 @@
     <div id="main">
       <div class="tab">
         <button id="default-tab" class="tablinks" onclick="openItem(event, 'Resources')">Resources</button>
-        <!-- <button class="tablinks" onclick="openItem(event, 'Audio-player')">Music</button> -->
         <button class="tablinks" onclick="openItem(event, 'netease-player')">Music</button>
         <button class="tablinks" onclick="openItem(event, 'Video-player')">Video</button>
-        <!-- <button class="tablinks" onclick="openItem(event, 'piano')">Piano</button> -->
         <button class="tablinks" onclick="openItem(event, 'gallery')">Gallery</button>
         <button class="tablinks" onclick="openItem(event, 'gadget')">Gadget</button>
       </div>
@@ -227,15 +188,9 @@
           marginwidth="0" scrolling="yes"></iframe>
       </div>
 
-      <!-- <div id="Audio-player" class="tabcontent">
-	  <iframe src="about:blank" data-src="/gadget/audio-player/" frameborder="0" height="560" width="100%" scrolling="yes"></iframe>
-  </div> -->
-
       <div id="netease-player" class="tabcontent">
         <iframe src="about:blank" data-src="//music.163.com/outchain/player?type=0&id=2250585392&auto=0&height=430"
           frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=450></iframe>
-        <!-- <iframe src="about:blank" data-src="/gadget/audio-player/" frameborder="0" height="560" width="100%"
-          scrolling="yes"></iframe> -->
       </div>
 
       <div id="Video-player" class="tabcontent">
@@ -280,16 +235,9 @@
             <a onclick="link1()">1</a>
             <a onclick="link2()">2</a>
             <a onclick="link3()">3</a>
-            <!-- <a href="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" target="videoiFrame">1</a> -->
-            <!-- <a href="//player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1" target="videoiFrame">2</a> -->
-            <!-- <a href="//player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1" target="videoiFrame">3</a> -->
           </div>
         </div>
       </div>
-
-      <!-- <div id="piano" class="tabcontent">
-    <iframe src="about:blank" data-src="/gadget/piano/" frameborder="0" height="560" width="100%" scrolling="yes"></iframe>
-  </div> -->
 
       <div id="gallery" class="tabcontent">
         <iframe src="about:blank" data-src="/gadget/gallery/#two" frameborder="0" height="560" width="100%"
@@ -307,6 +255,7 @@
   <!-- sidebar nav -->
   <script>
     'use strict'
+    
     function openNav() {
       on();
       document.getElementById("mySidenav").style.width = "580px";
