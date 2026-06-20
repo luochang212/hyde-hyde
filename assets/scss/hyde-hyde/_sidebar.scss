@@ -19,7 +19,16 @@
   }
   .author-image {
     display: block;
-    margin-top: 4px;
+    line-height: 0;
+    margin: 0;
+    padding: 15px 0 0 0;
+    img {
+      margin-bottom: 0;
+      vertical-align: top;
+    }
+  }
+  .sidebar-about {
+    padding-bottom: 0;
   }
 }
 
@@ -29,6 +38,9 @@
   margin-bottom: 2rem;
   margin-top: 2rem;
   padding-left: 0;
+}
+.sidebar-nav__home {
+  display: none; // PC 隐藏
 }
 
 .sidebar-nav-item {
@@ -49,6 +61,9 @@
 .site__description {
   font-size: 1.285rem;
   font-weight: 300;
+  &:empty {
+    display: none;
+  }
 }
 
 .social {

@@ -1,6 +1,9 @@
 <div>
 	<ul class="sidebar-nav">
-		{{ $currentPage := . }} 
+		<li class="sidebar-nav__home">
+			<a href="{{ .Site.BaseURL }}"><span>Home</span></a>
+		</li>
+		{{ $currentPage := . }}
 		{{ range .Site.Menus.main }} 
 			{{ if .HasChildren }}
 			<li {{ if $currentPage.HasMenuCurrent "main" . }}class="active"{{ end }}>
