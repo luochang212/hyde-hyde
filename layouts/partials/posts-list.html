@@ -1,4 +1,5 @@
 {{ range . }}
+{{ if not .Title }}{{ continue }}{{ end }}
 <li>
   <span class="list__title--small">
     <a href="{{ .RelPermalink }}" {{if .Draft}}class="draft"{{end}}>{{ .Title }}</a>

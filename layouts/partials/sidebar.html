@@ -251,6 +251,36 @@
       display: none;
     }
 
+    mjx-container[display="true"] {
+      display: block !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      max-width: 100% !important;
+    }
+
+    .post {
+      overflow-x: hidden;
+    }
+
+    .list__title--small {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .list__title--small a {
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .list__title--small time {
+      flex-shrink: 0;
+      min-width: fit-content;
+    }
+
   </style>
 
   <!-- Sidebar -->
