@@ -19,9 +19,14 @@ code {
 pre {
   margin-top: 0;
   margin-bottom: 1rem;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  background-color: #f9f9f9;
+  border-radius: .25rem;
 }
 
 pre code {
+  display: block;
   padding: 0;
   font-size: 100%;
   color: inherit;
@@ -38,6 +43,7 @@ pre code {
   border-radius: .25rem;
 
   pre {
+    margin-top: 0;
     margin-bottom: 0;
     overflow-x: auto;
   }
