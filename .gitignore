@@ -1,0 +1,5 @@
+# Hugo 编译产物，不应入库
+resources/_gen/
+
+# macOS
+.DS_Store
