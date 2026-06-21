@@ -49,12 +49,51 @@ function openItem(evt, itemName) {
   loadPanel(document.getElementById(itemName))
 }
 
-function showVideo(videoId) {
-  ['video1', 'video2', 'video3'].forEach(function (id) {
-    document.getElementById(id).hidden = id !== videoId
+// ── Video tab ──
+
+var currentBvid = 'BV1Ms411D7in'
+
+function selectVideo(itemEl) {
+  document.querySelectorAll('.video-item').forEach(function (el) {
+    el.classList.remove('active')
   })
-  loadPanel(document.getElementById(videoId))
+  itemEl.classList.add('active')
+
+  currentBvid = itemEl.dataset.bvid
+
+  document.getElementById('video-cover-img').src = itemEl.dataset.cover
+  document.getElementById('video-cover-title').textContent = itemEl.dataset.title
+
+  var frameEl = document.getElementById('video-frame')
+  frameEl.hidden = true
+  var iframe = frameEl.querySelector('iframe')
+  if (iframe) {
+    iframe.src = 'about:blank'
+    iframe.removeAttribute('data-src')
+  }
+  document.getElementById('video-cover').style.display = ''
 }
+
+function playCurrentVideo() {
+  document.getElementById('video-cover').style.display = 'none'
+  var frameEl = document.getElementById('video-frame')
+  frameEl.hidden = false
+  var iframe = frameEl.querySelector('iframe')
+  var url = '//player.bilibili.com/player.html?bvid=' + currentBvid + '&p=1&high_quality=1&danmaku=0&autoplay=1'
+  if (iframe.src !== url) {
+    iframe.src = url
+  }
+}
+
+document.querySelectorAll('.video-item').forEach(function (item) {
+  item.addEventListener('click', function () {
+    if (!this.classList.contains('active')) {
+      selectVideo(this)
+    }
+  })
+})
+
+document.getElementById('video-cover').addEventListener('click', playCurrentVideo)
 
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Escape' && sidebarTrigger.getAttribute('aria-expanded') === 'true') {

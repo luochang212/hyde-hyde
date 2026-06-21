@@ -1,6 +1,6 @@
 <div class="sidebar-about">
   <span class="site__title">
-    <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+    <a href="/">{{ .Site.Title }}</a>
   </span>
   {{ with .Site.Params.authorimage }}
   {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
