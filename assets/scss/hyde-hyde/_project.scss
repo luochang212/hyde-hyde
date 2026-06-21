@@ -127,8 +127,10 @@
   z-index: 99;
 }
 
-.more:hover .img-top {
-  display: inline;
+@media (hover: hover) {
+  .more:hover .img-top {
+    display: inline;
+  }
 }
 
 // only needs some pieces from Bootstrap
