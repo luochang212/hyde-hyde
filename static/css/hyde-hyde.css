@@ -781,3 +781,10 @@ a.badge-tag {
   color: #8f5536; }
 
 /*# sourceMappingURL=hyde-hyde.css.map */
+
+/* MathJax 移动端防溢出 */
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}

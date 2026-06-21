@@ -6,10 +6,66 @@
 
 .portfolio__featured-project {
   margin: 0 0 1.765rem;
-  img {
-    margin: 0 0 1rem;
-    box-shadow: 1px 1px $gray-2;
-  }
+}
+
+.featured-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 1.5rem 1.25rem;
+  border: 1px solid rgba(38, 139, 210, 0.09);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 24px rgba(15, 23, 42, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(38, 139, 210, 0.15);
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.featured-card .project__title {
+  display: block;
+  margin-top: 0;
+}
+
+.featured-card .project__subtitle-big {
+  margin-top: 0.5rem;
+}
+
+.featured-card .project__featured-image {
+  margin-bottom: 1rem;
+}
+
+.featured-card .project__featured-image img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.featured-card .featured-container {
+  padding: 0 0.25rem 0.1rem;
+}
+
+.featured-card .project__summary {
+  margin-bottom: 0;
+  color: #4f5b68;
+  line-height: 1.75;
+  text-align: left;
+}
+
+.featured-card .project__summary p:last-child {
+  margin-bottom: 0;
 }
 
 .project__image {
@@ -55,6 +111,24 @@
 }
 .row-space {
   margin-bottom: 1rem;
+}
+
+.more {
+  width: 45%;
+  position: relative;
+  display: inline-block;
+}
+
+.more .img-top {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.more:hover .img-top {
+  display: inline;
 }
 
 // only needs some pieces from Bootstrap

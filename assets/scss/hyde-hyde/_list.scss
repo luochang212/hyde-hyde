@@ -25,3 +25,22 @@
 	margin-bottom: .2rem;
 	margin-top: .2rem;
 }
+
+.list__title--small {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  a {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  time {
+    flex-shrink: 0;
+    min-width: fit-content;
+  }
+}

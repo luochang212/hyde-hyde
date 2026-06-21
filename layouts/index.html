@@ -6,6 +6,9 @@
   <div class="post-list">
     {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections) }}
     {{ range $paginator.Pages }}
+      {{ if not .Title }}
+        {{ continue }}
+      {{ end }}
       {{ if .Draft }}
         {{ .Scratch.Set "draftPage" true }}
       {{ else }}

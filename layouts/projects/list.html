@@ -1,0 +1,12 @@
+{{ define "header" }}
+    {{ partial "header.html" . }}
+{{ end }}
+
+{{ define "content" }}
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer/font-awesome-js.html" . }}
+{{ end }}

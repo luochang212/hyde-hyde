@@ -1,0 +1,146 @@
+<div id="overlay" onclick="closeNav()" aria-hidden="true"></div>
+
+<div id="mySidenav" class="sidenav" role="dialog" aria-label="个人收藏" aria-hidden="true">
+  <div id="main">
+    <div class="tab">
+      <button id="default-tab" class="tablinks active" onclick="openItem(event, 'Resources')"
+        aria-controls="Resources" aria-pressed="true">Resources</button>
+      <button class="tablinks" onclick="openItem(event, 'netease-player')"
+        aria-controls="netease-player" aria-pressed="false">Music</button>
+      <button class="tablinks" onclick="openItem(event, 'video-player')"
+        aria-controls="video-player" aria-pressed="false">Video</button>
+      <button class="tablinks" onclick="openItem(event, 'gallery')"
+        aria-controls="gallery" aria-pressed="false">Gallery</button>
+      <button class="tablinks" onclick="openItem(event, 'gadget')"
+        aria-controls="gadget" aria-pressed="false">Gadget</button>
+      <button class="tablinks" onclick="openItem(event, 'categories')"
+        aria-controls="categories" aria-pressed="false">Cats</button>
+    </div>
+
+    <div id="Resources" class="tabcontent">
+      <iframe class="myiframe"
+        src="about:blank"
+        data-src="/resources/"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Resources"
+        scrolling="auto"></iframe>
+    </div>
+
+    <div id="netease-player" class="tabcontent" hidden>
+      <iframe class="myiframe"
+        src="about:blank"
+        data-src="//music.163.com/outchain/player?type=0&id=2250585392&auto=0&height=430"
+        frameborder="no"
+        marginheight="0"
+        marginwidth="0"
+        title="Music player"
+        scrolling="auto"></iframe>
+    </div>
+
+    <div id="video-player" class="tabcontent" hidden>
+      <div id="video1">
+        <iframe src="about:blank"
+          data-src="//player.bilibili.com/player.html?bvid=BV1Ln4y1d7Z9&p=1&high_quality=1&danmaku=0&autoplay=0"
+          style="width:100%; height: 500px"
+          scrolling="no"
+          frameborder="no"
+          framespacing="0"
+          title="ZUTOMYAO video"
+          allowfullscreen="true"></iframe>
+      </div>
+      <div id="video2" hidden>
+        <iframe src="about:blank"
+          data-src="//player.bilibili.com/player.html?bvid=BV1rp4y1L7i4&p=1&high_quality=1&danmaku=0&autoplay=0"
+          style="width:100%; height: 500px"
+          scrolling="no"
+          frameborder="no"
+          framespacing="0"
+          title="岁岁恋 video"
+          allowfullscreen="true"></iframe>
+      </div>
+      <div id="video3" hidden>
+        <iframe src="about:blank"
+          data-src="//player.bilibili.com/player.html?bvid=BV1Av4y147QE&p=1&high_quality=1&danmaku=0&autoplay=0"
+          style="width:100%; height:500px"
+          scrolling="no"
+          frameborder="no"
+          framespacing="0"
+          title="真物论 video"
+          allowfullscreen="true"></iframe>
+      </div>
+
+      <!--
+        Histories:
+        //player.bilibili.com/player.html?aid=455023331&bvid=BV1X541167RE&cid=170542054&page=1&high_quality=1&danmaku=0
+        //player.bilibili.com/player.html?aid=20535616&bvid=BV1zW411W75L&cid=33582726&page=1
+        //player.bilibili.com/player.html?aid=15159845&cid=24679968&page=1&high_quality=1&danmaku=0
+        //player.bilibili.com/player.html?aid=65042716&bvid=BV1M4411r7yu&cid=112895137&page=1&high_quality=1&high_quality=1&danmaku=0
+        //player.bilibili.com/player.html?aid=15159845&cid=24679968&page=1
+        //player.bilibili.com/player.html?aid=20209913&cid=33001151&page=1
+        //player.bilibili.com/player.html?aid=94304902&cid=161422087&page=1
+        //player.bilibili.com/player.html?aid=70827140&cid=122709879&page=1
+        //player.bilibili.com/player.html?aid=84675389&cid=144812767&page=1
+        //player.bilibili.com/player.html?aid=3412958&cid=5410806&page=1
+        //player.bilibili.com/player.html?aid=67581905&cid=118046992&page=1
+        //player.bilibili.com/player.html?aid=3412958&cid=5410806&page=1
+        //player.bilibili.com/player.html?aid=69309523&cid=120121410&page=1
+        //player.bilibili.com/player.html?aid=47167171&cid=82804828&page=1
+        //player.bilibili.com/player.html?aid=9280936&cid=15335929&page=1
+        //player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1
+        //player.bilibili.com/player.html?aid=3601884&cid=5751830&page=1
+        //player.bilibili.com/player.html?aid=41949084&cid=75021374&page=1
+        //player.bilibili.com/player.html?aid=2222481&cid=3454678&page=1
+        //player.bilibili.com/player.html?aid=65173789&cid=113118418&page=1
+        //player.bilibili.com/player.html?aid=2376711&cid=3716881&page=1
+      -->
+
+      <!-- <iframe name="videoiFrame" src="about:blank" data-src="//player.bilibili.com/player.html?aid=23622309&cid=40291448&page=1" style="width:100%; height:460px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe> -->
+
+      <br>
+      <div class="dropup">
+        <button type="button" class="dropbtn">更多视频</button>
+        <div class="dropup-content">
+          <button type="button" onclick="showVideo('video1')">ZUTOMYAO</button>
+          <button type="button" onclick="showVideo('video2')">岁岁恋</button>
+          <button type="button" onclick="showVideo('video3')">真物论</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gallery" class="tabcontent" hidden>
+      <iframe class="myiframe"
+        src="about:blank"
+        data-src="/gadget/gallery/#two"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Gallery"
+        scrolling="auto"></iframe>
+    </div>
+
+    <div id="gadget" class="tabcontent drawer-native" hidden>
+      <div class="drawer-native-content">
+        {{ with .Site.GetPage "/tool" }}
+          {{ .Content }}
+        {{ end }}
+      </div>
+    </div>
+
+    <div id="categories" class="tabcontent drawer-native" hidden>
+      <ul class="drawer-category-list">
+        {{ range .Site.Taxonomies.categories.ByCount }}
+          <li>
+            <a href="{{ .Page.RelPermalink }}" target="_blank" rel="noopener noreferrer">
+              <span>{{ .Page.LinkTitle }}</span>
+              <span class="drawer-category-count">{{ .Count }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="{{ "js/drawer.js" | relURL }}"></script>
