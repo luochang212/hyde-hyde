@@ -61,3 +61,7 @@ document.addEventListener('keydown', function (event) {
     closeNav()
   }
 })
+
+document.querySelectorAll('#categories .drawer-category-list a').forEach(function (a) {
+  a.addEventListener('click', function () { a.blur() })
+})
