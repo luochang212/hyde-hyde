@@ -310,14 +310,20 @@ body.drawer-open {
   padding: 0;
 }
 
+.drawer-category-list li + li {
+  margin-top: 2px;
+}
+
 .drawer-category-list a {
   align-items: center;
   color: #444;
   display: flex;
+  font-size: 14px;
   justify-content: space-between;
-  padding: 11px 14px;
+  line-height: 1.25;
+  padding: 7px 10px;
   text-decoration: none;
-  border-left: 3px solid transparent;
+  border-left: 2px solid transparent;
   transition: border-color 0.2s, background 0.2s;
 }
 
@@ -329,6 +335,6 @@ body.drawer-open {
 
 .drawer-category-count {
   color: #aaa;
-  font-size: 13px;
+  font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
