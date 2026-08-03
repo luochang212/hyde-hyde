@@ -40,7 +40,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12" href="{{ .Params.link }}"
                     target="_blank" rel="noopener noreferrer">
                     {{ if .Params.screenshot }}
-                        <img class="project__image img-responsive" src="{{ .Params.screenshot }}" alt="{{ .Title }}">
+                        <img class="project__image img-responsive" src="{{ .Params.screenshot }}" alt="{{ .Title }}" loading="lazy">
                     {{ end }}
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">

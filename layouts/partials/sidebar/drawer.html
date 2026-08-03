@@ -31,7 +31,7 @@
     <div id="netease-player" class="tabcontent" hidden>
       <iframe class="myiframe"
         src="about:blank"
-        data-src="//music.163.com/outchain/player?type=0&id=2250585392&auto=0&height=430"
+        data-src="{{ with .Site.Data.drawer.music }}{{ .src }}{{ end }}"
         frameborder="no"
         marginheight="0"
         marginwidth="0"
@@ -40,84 +40,48 @@
     </div>
 
     <div id="video-player" class="tabcontent" hidden>
-      <div class="video-layout">
-        <div class="video-main">
-          <div class="video-cover" id="video-cover">
-            <img id="video-cover-img" src="/img/video-covers/zutomayo.jpg" alt="">
-            <div class="video-cover-overlay">
-              <button class="video-play-btn" id="video-play-btn" aria-label="播放视频">
-                <svg viewBox="0 0 24 24" width="48" height="48"><path d="M8 5v14l11-7z" fill="white"/></svg>
-              </button>
-              <span class="video-cover-title" id="video-cover-title">四月是你的谎言</span>
-            </div>
-          </div>
-          <div class="video-frame" id="video-frame" hidden>
-            <iframe src="about:blank"
-              data-src="//player.bilibili.com/player.html?bvid=BV1Ms411D7in&p=1&high_quality=1&danmaku=0&autoplay=0"
-              style="width:100%;"
-              scrolling="no"
-              frameborder="no"
-              framespacing="0"
-              title="Bilibili video player"
-              allowfullscreen="true"></iframe>
-          </div>
+  {{ with .Site.Data.drawer.videos }}
+  <div class="video-layout">
+    <div class="video-main">
+      <div class="video-cover" id="video-cover">
+        {{ $first := index . 0 }}
+        <img id="video-cover-img" src="{{ $first.cover }}" alt="{{ $first.title }}">
+        <div class="video-cover-overlay">
+          <button class="video-play-btn" id="video-play-btn" aria-label="播放视频">
+            <svg viewBox="0 0 24 24" width="48" height="48"><path d="M8 5v14l11-7z" fill="white"/></svg>
+          </button>
+          <span class="video-cover-title" id="video-cover-title">{{ $first.title }}</span>
         </div>
-        <div class="video-playlist">
-          <button class="video-item active" data-bvid="BV1Ms411D7in"
-            data-title="四月是你的谎言"
-            data-cover="/img/video-covers/zutomayo.jpg"
-            data-duration="4:04">
-            <img class="video-item-cover" src="/img/video-covers/zutomayo.jpg" alt="">
-            <div class="video-item-info">
-              <span class="video-item-title">四月是你的谎言</span>
-              <span class="video-item-meta">4:04</span>
-            </div>
-          </button>
-          <button class="video-item" data-bvid="BV1LW411j7dK"
-            data-title="Kids by One republic — 三羊"
-            data-cover="/img/video-covers/sanyang.jpg"
-            data-duration="2:54">
-            <img class="video-item-cover" src="/img/video-covers/sanyang.jpg" alt="">
-            <div class="video-item-info">
-              <span class="video-item-title">Kids by One republic</span>
-              <span class="video-item-meta">三羊 · 2:54</span>
-            </div>
-          </button>
-          <button class="video-item" data-bvid="BV1Yx411U7Lx"
-            data-title="交织together — M78"
-            data-cover="/img/video-covers/jiaozhi.jpg"
-            data-duration="6:06">
-            <img class="video-item-cover" src="/img/video-covers/jiaozhi.jpg" alt="">
-            <div class="video-item-info">
-              <span class="video-item-title">交织together</span>
-              <span class="video-item-meta">M78 · 6:06</span>
-            </div>
-          </button>
-          <button class="video-item" data-bvid="BV1rp4y1L7i4"
-            data-title="新员工入职大会 — 岁己SUI/恋诗夜Koxia"
-            data-cover="/img/video-covers/suisui.jpg"
-            data-duration="2:33">
-            <img class="video-item-cover" src="/img/video-covers/suisui.jpg" alt="">
-            <div class="video-item-info">
-              <span class="video-item-title">新员工入职大会</span>
-              <span class="video-item-meta">岁己SUI/恋诗夜Koxia · 2:33</span>
-            </div>
-          </button>
-          <button class="video-item" data-bvid="BV1Av4y147QE"
-            data-title="真物论 — 悠亚"
-            data-cover="/img/video-covers/zhenwulun.jpg"
-            data-duration="3:30">
-            <img class="video-item-cover" src="/img/video-covers/zhenwulun.jpg" alt="">
-            <div class="video-item-info">
-              <span class="video-item-title">真物论</span>
-              <span class="video-item-meta">悠亚 · 3:30</span>
-            </div>
-          </button>
-        </div>        </div>
       </div>
-
-
-    <div id="gallery" class="tabcontent" hidden>
+      <div class="video-frame" id="video-frame" hidden>
+        <iframe src="about:blank"
+          data-src="//player.bilibili.com/player.html?bvid={{ $first.bvid }}&p=1&high_quality=1&danmaku=0&autoplay=0"
+          style="width:100%;"
+          scrolling="no"
+          frameborder="no"
+          framespacing="0"
+          title="Bilibili video player"
+          allowfullscreen="true"></iframe>
+      </div>
+    </div>
+    <div class="video-playlist">
+      {{ range $i, $v := . }}
+      <button class="video-item{{ if eq $i 0 }} active{{ end }}" data-bvid="{{ $v.bvid }}"
+        data-title="{{ $v.title }}"
+        data-cover="{{ $v.cover }}"
+        data-duration="{{ $v.duration }}">
+        <img class="video-item-cover" loading="lazy" src="{{ $v.cover }}" alt="">
+        <div class="video-item-info">
+          <span class="video-item-title">{{ $v.display_title }}</span>
+          <span class="video-item-meta">{{ $v.meta }}</span>
+        </div>
+      </button>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>
+<div id="gallery" class="tabcontent" hidden>
       <iframe class="myiframe"
         src="about:blank"
         data-src="/gadget/gallery/"
