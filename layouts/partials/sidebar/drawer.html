@@ -31,7 +31,7 @@
     <div id="netease-player" class="tabcontent" hidden>
       <iframe class="myiframe"
         src="about:blank"
-        data-src="{{ with .Site.Data.drawer.music }}{{ .src }}{{ end }}"
+        data-src="{{ with hugo.Data.drawer.music }}{{ .src }}{{ end }}"
         frameborder="no"
         marginheight="0"
         marginwidth="0"
@@ -40,7 +40,7 @@
     </div>
 
     <div id="video-player" class="tabcontent" hidden>
-  {{ with .Site.Data.drawer.videos }}
+  {{ with hugo.Data.drawer.videos }}
   <div class="video-layout">
     <div class="video-main">
       <div class="video-cover" id="video-cover">
