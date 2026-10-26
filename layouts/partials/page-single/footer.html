@@ -1,4 +1,4 @@
-{{ partial "page-single/mathjax_support.html" . }}
+{{ if or (findRE "\\$\\$" .Content) (findRE "\\\\[(]" .Content) }}{{ partial "page-single/mathjax_support.html" . }}{{ end }}
 {{ $include_toc := .Params.include_toc}}
 {{ partial "footer/font-awesome-js.html" . }}
 {{ with .Site.Params.toc }}
