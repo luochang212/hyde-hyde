@@ -28,4 +28,4 @@
   </div>
 </div>
 
-{{ partial "sidebar/drawer.html" . }}
+{{ if templates.Exists "partials/sidebar/drawer.html" }}{{ partial "sidebar/drawer.html" . }}{{ end }}
