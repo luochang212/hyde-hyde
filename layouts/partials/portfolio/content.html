@@ -37,8 +37,7 @@
             <br>
             {{ range (where .Data.Pages "Params.featured" "!=" true).ByDate.Reverse }}
             <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12" href="{{ .Params.link }}"
-                    target="_blank" rel="noopener noreferrer">
+                <div class="col-md-4 col-sm-4 col-xs-12">
                     {{ if .Params.screenshot }}
                         <img class="project__image img-responsive" src="{{ .Params.screenshot }}" alt="{{ .Title }}" loading="lazy">
                     {{ end }}

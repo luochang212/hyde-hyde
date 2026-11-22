@@ -55,7 +55,6 @@
       </div>
       <div class="video-frame" id="video-frame" hidden>
         <iframe src="about:blank"
-          data-src="//player.bilibili.com/player.html?bvid={{ $first.bvid }}&p=1&high_quality=1&danmaku=0&autoplay=0"
           style="width:100%;"
           scrolling="no"
           frameborder="no"
@@ -68,8 +67,7 @@
       {{ range $i, $v := . }}
       <button class="video-item{{ if eq $i 0 }} active{{ end }}" data-bvid="{{ $v.bvid }}"
         data-title="{{ $v.title }}"
-        data-cover="{{ $v.cover }}"
-        data-duration="{{ $v.duration }}">
+        data-cover="{{ $v.cover }}">
         <img class="video-item-cover" loading="lazy" src="{{ $v.cover }}" alt="">
         <div class="video-item-info">
           <span class="video-item-title">{{ $v.display_title }}</span>
