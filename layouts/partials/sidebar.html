@@ -5,8 +5,7 @@
         <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
       </span>
       {{ with .Site.Params.authorimage }}
-      {{ $strippedSlash := ($.Site.Params.authorimage | replaceRE "^(/)+(.*)" "$2") }}
-      {{ $authorImage := (printf "%s/%s" $.Site.BaseURL $strippedSlash) }}
+      {{ $authorImage := $.Site.Params.authorimage | relURL }}
       <div class="author-image">
         <button type="button" class="author-trigger" onclick="openNav()" aria-label="打开个人收藏侧栏"
           aria-controls="mySidenav" aria-expanded="false"><img src="{{$authorImage}}"
