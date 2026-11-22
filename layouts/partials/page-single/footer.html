@@ -3,9 +3,10 @@
 {{ partial "footer/font-awesome-js.html" . }}
 {{ with .Site.Params.toc }}
 {{ if and (eq . "tocbot") (ne $include_toc false) }}
-<script src="https://cdn.jsdelivr.net/npm/tocbot@4.36.8/dist/tocbot.min.js"></script>
+<script defer src="{{ "js/tocbot.min.js" | relURL }}"></script>
 <script type="text/javascript">
-  if (window.tocbot) {
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.tocbot) {
     tocbot.init({
       // Where to render the table of contents.
       tocSelector: '.toc',
@@ -15,13 +16,14 @@
       headingSelector: 'h2, h3, h4',
       collapseDepth: 4
     });
-  }
+    }
+  });
 </script>
 {{ end }}
 {{ end }}
 
 {{ if not .Params.noZoom }}
-<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js" defer></script>
+<script defer src="{{ "js/medium-zoom.min.js" | relURL }}"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     mediumZoom('.post img', {
