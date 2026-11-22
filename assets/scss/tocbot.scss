@@ -1,4 +1,4 @@
-@import 'hugo-toc';
+@use 'hugo-toc' as *;
 
 .toc {
   font-size: $toc-font-size;

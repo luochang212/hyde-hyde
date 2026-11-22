@@ -1,20 +1,20 @@
-@import "hyde-hyde/variables";
+@use "hyde-hyde/variables" as *;
 // poole
-@import "poole/base";
-@import "poole/layout";
-@import "poole/posts";
+@use "poole/base" as poole-base;
+@use "poole/layout";
+@use "poole/posts";
 // hyde-hyde
-@import 'hyde-hyde/mixins';
-@import 'hyde-hyde/base';
-@import 'hyde-hyde/sidebar';
-@import 'hyde-hyde/drawer';
-@import 'hyde-hyde/list';
-@import 'hyde-hyde/post';
-@import 'hyde-hyde/code';
-@import 'hyde-hyde/gist';
-@import 'hyde-hyde/navigation';
-@import 'hyde-hyde/taxonomies';
-@import 'hyde-hyde/project';
-@import 'hyde-hyde/responsive';
-@import 'hyde-hyde/misc';
-@import 'hyde-hyde/theme';
+@use "hyde-hyde/mixins" as *;
+@use "hyde-hyde/base";
+@use "hyde-hyde/sidebar";
+@use "hyde-hyde/drawer";
+@use "hyde-hyde/list";
+@use "hyde-hyde/post";
+@use "hyde-hyde/code";
+@use "hyde-hyde/gist";
+@use "hyde-hyde/navigation";
+@use "hyde-hyde/taxonomies";
+@use "hyde-hyde/project";
+@use "hyde-hyde/responsive";
+@use "hyde-hyde/misc";
+@use "hyde-hyde/theme";
