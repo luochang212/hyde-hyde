@@ -45,7 +45,7 @@
     <div class="video-main">
       <div class="video-cover" id="video-cover">
         {{ $first := index . 0 }}
-        <img id="video-cover-img" src="{{ $first.cover }}" alt="{{ $first.title }}">
+        <img loading="lazy" id="video-cover-img" src="{{ $first.cover }}" alt="{{ $first.title }}">
         <div class="video-cover-overlay">
           <button class="video-play-btn" id="video-play-btn" aria-label="播放视频">
             <svg viewBox="0 0 24 24" width="48" height="48"><path d="M8 5v14l11-7z" fill="white"/></svg>
